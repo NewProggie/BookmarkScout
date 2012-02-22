@@ -1,51 +1,64 @@
 <!DOCTYPE html>
 <html lang="de">
-	<head>
-		<meta charset="utf-8">
-		<title>BookmarkScout</title>
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<meta name="description" content="">
-		<meta name="author" content="">
-		<link type="text/css" rel="stylesheet" href="/stylesheets/css/bootstrap.min.css">
-		<style>
-			body {
-				padding-top: 60px; /* space for top navigation */
-			}
-		</style>
-		<link type="text/css" rel="stylesheet" href="/stylesheets/css/bootstrap-responsive.min.css">
+  <head>
+    <meta charset="utf-8">
+      <title>BookmarkScout</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="">
+	  <meta name="author" content="">
+	    <link type="text/css" rel="stylesheet" href="/stylesheets/css/bootstrap.min.css">
+	      <style>
+		body {
+		padding-top: 60px; /* space for top navigation */
+		}
+	      </style>
+	      <link type="text/css" rel="stylesheet" href="/stylesheets/css/bootstrap-responsive.min.css">
 		<link rel="shortcut icon" href="">
-	</head>
-	
-	<body>
+  </head>
 
-		<div class="navbar navbar-fixed-top">
-			<div class="navbar-inner">
-				<div class="container">
-					<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-						<span class="icon-bar"></span>	
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-					</a>
-					<a class="brand" href="#">BookmarkScout</a>
-					<div class="nav-collapse">
-						<ul class="nav">
-							<li class="active"><a href="#">Home</a></li>
-							<li><a href="#about">About</a></li>
-							<li><a href="#contact">Contact</a></li>
-						</ul>
-					</div><!--/.nav-collapse -->
-				</div>
-			</div>
-		</div>
+  <body>
 
-		<div class="container">
-			<h1>Hallo, {{ user }}!</h1>
-			<p>Deine gespeicherten Links</p><br />
-			<a class="btn btn-danger" href="{{ logout_url }}">Ausloggen</a>	
-		</div> 
+    <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+	<div class="container">
+	  <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+	    <span class="icon-bar"></span>	
+	    <span class="icon-bar"></span>
+	    <span class="icon-bar"></span>
+	  </a>
+	  <a class="brand" href="#">BookmarkScout</a>
+	  <div class="nav-collapse">
+	    <ul class="nav">
+	      <li class="active"><a href="#">Home</a></li>
+	      <li><a href="#about">About</a></li>
+	      <li><a href="#contact">Contact</a></li>
+	    </ul>
+	  </div><!--/.nav-collapse -->
+	</div>
+      </div>
+    </div>
 
-		<!-- Gesamter JS Code in einer Datei -->
-		<script src="/stylesheets/js/bootstrap.min.js"></script>
+    <div class="container">
+      <h1>Hallo, {{ user }}!</h1>
+      <p>Deine gespeicherten Links:</p>
+      <ul>
+	{% for link in last_100_links %}
+	<li><a href="{{ link.url }}">{{ link.url }}</a></li>
+	{% endfor %}
+      </ul>
+      <form class="well" action="/new_link" method="post">
+      <label>Neuen Link speichern</label>
+      <input type="text" name="url" class="span3" placeholder="http://www.example.com">
+      <label class="checkbox">
+      <input type="checkbox">privat
+      </label>
+      <button type="submit" href="/new_link" class="btn">Speichern</button>
+      </form>
+      <a class="btn btn-danger" href="{{ logout_url }}">Ausloggen</a>	
+    </div> 
 
-	</body>
+    <!-- Gesamter JS Code in einer Datei -->
+    <script src="/stylesheets/js/bootstrap.min.js"></script>
+
+  </body>
 </html>

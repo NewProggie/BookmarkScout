@@ -23,10 +23,11 @@ class Links(webapp.RequestHandler):
 class MainPage(webapp.RequestHandler):
 
     def get(self):
-        links_query = Link.all().order('-date')
-        last_100_links = links_query.fetch(100)
         user = users.get_current_user()
+        links_query = Link.all().order('-date')
         if user:
+            links_query.filter("user =", user)
+            last_100_links = links_query.fetch(100)
             template_values = { 'user': user.nickname(),
                                 'last_100_links': last_100_links,
                                 'logout_url': users.create_logout_url('/') }

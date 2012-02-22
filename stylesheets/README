@@ -1,0 +1,4 @@
+CSS files will be generated through the less files inside the folter less/.
+Therefore one just need to adjust the values inside a less file and compile
+them through the given makefile. The lessc compiler is needed to compile the
+less files.

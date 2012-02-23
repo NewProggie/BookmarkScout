@@ -48,9 +48,12 @@
       </ul>
       <form class="well" action="/new_link" method="post">
       <label>Neuen Link speichern</label>
-      <input type="text" name="url" class="span3" placeholder="http://www.example.com">
+      <input type="text" name="url" class="span3"
+      placeholder="http://www.example.com">
+      <label>Notizen</label>
+      <textarea class="input-xlarge" name="notes" rows="3"></textarea>
       <label class="checkbox">
-      <input type="checkbox">privat
+      <input type="checkbox" name="is_privat">privat
       </label>
       <button type="submit" href="/new_link" class="btn">Speichern</button>
       </form>

@@ -7,6 +7,8 @@ from google.appengine.ext.webapp import template
 class Link(db.Model):
     user = db.UserProperty()
     url = db.StringProperty()
+    notes = db.StringProperty(multiline=True)
+    is_privat = db.BooleanProperty()
     date = db.DateTimeProperty(auto_now_add=True)
 
 class Links(webapp.RequestHandler):
@@ -17,6 +19,8 @@ class Links(webapp.RequestHandler):
             link.user = users.get_current_user()
 
         link.url = self.request.get('url')
+        link.notes = self.request.get('notes')
+        link.is_privat = True if self.request.get('is_privat') else False
         link.put()
         self.redirect('/')
 

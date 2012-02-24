@@ -8,6 +8,7 @@ class Link( db.Model ):
 	_url = db.StringProperty()
 	notes = db.StringProperty( multiline = True )
 	is_privat = db.BooleanProperty()
+	tags = db.ListProperty(item_type=str)
 	date = db.DateTimeProperty( auto_now_add = True )
 
 	def get_url( self ):

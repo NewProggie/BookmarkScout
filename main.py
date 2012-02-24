@@ -1,15 +1,12 @@
 import os
+
 from google.appengine.api import users
-from google.appengine.ext import webapp, db
+from google.appengine.ext import webapp
 from google.appengine.ext.webapp.util import run_wsgi_app
 from google.appengine.ext.webapp import template
 
-class Link(db.Model):
-    user = db.UserProperty()
-    url = db.StringProperty()
-    notes = db.StringProperty(multiline=True)
-    is_privat = db.BooleanProperty()
-    date = db.DateTimeProperty(auto_now_add=True)
+from model.Link import Link
+
 
 class Links(webapp.RequestHandler):
 
@@ -23,6 +20,7 @@ class Links(webapp.RequestHandler):
         link.is_privat = True if self.request.get('is_privat') else False
         link.put()
         self.redirect('/')
+
 
 class MainPage(webapp.RequestHandler):
 
@@ -40,6 +38,7 @@ class MainPage(webapp.RequestHandler):
         else:
             self.redirect(users.create_login_url(self.request.uri))
 
+
 application = webapp.WSGIApplication(
     [('/', MainPage),
      ('/new_link', Links)],
@@ -51,4 +50,4 @@ def main():
 if __name__ == "__main__":
     main()
 
-        
+

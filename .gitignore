@@ -1,2 +1,5 @@
 # Ignore OS X stuff
 .DS_Store
+
+# Ignore compiled python
+*.pyc

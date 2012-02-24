@@ -41,11 +41,25 @@
     <div class="container">
       <h1>Hallo, {{ user }}!</h1>
       <p>Deine gespeicherten Links:</p>
-      <ul>
-	  {% for link in last_100_links %}
-	    <li><a href="{{ link.url }}">{{ link.url }}</a></li>
-	  {% endfor %}
+      
+      <ul id="tab" class="nav nav-tabs">
+	<li class="active"><a href="#savedlinks" data-toggle="tab">Gespeicherte Links</a></li>
+	<li><a href="#profile" data-toggle="tab">Profil</a></li>
       </ul>
+      
+    <div id="tabcontent" class="tab-content">
+      <div class="tab-pane fade active in" id="savedlinks">
+	<ul>
+	  {% for link in last_100_links %}
+	  <li><a href="{{ link.url }}">{{ link.url }}</a></li>
+	  {% endfor %}
+	</ul>
+      </div>
+      <div class="tab-pane fade" id="profile">
+	<p>TODO: Benutzerprofil</p>
+      </div>
+    </div>
+    
       <form class="well" action="/new_link" method="post">
         <label>Neuen Link speichern</label>
         <input type="text" name="url" class="span3" placeholder="http://www.example.com">
@@ -60,7 +74,7 @@
     </div>
 
     <!-- Gesamter JS Code in einer Datei -->
-    <script src="/stylesheets/js/bootstrap.min.js"></script>
+    <script src="stylesheets/js/bootstrap.min.js"></script>
 
   </body>
 </html>

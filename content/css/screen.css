@@ -1,0 +1,25 @@
+
+/* General elements */
+/*------------------*/
+
+h2 {
+	margin-bottom: 20px;
+}
+
+
+
+/* Often used classes/IDs */
+/*------------------------*/
+
+.main-area {
+	padding-top: 80px;
+}
+
+
+
+/* Special classes/IDs */
+/*---------------------*/
+
+.add-link {
+	margin-bottom: 20px;
+}

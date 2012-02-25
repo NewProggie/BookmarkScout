@@ -1,14 +1,15 @@
-BOOTSTRAP = ./stylesheets/css/bootstrap.css
-BOOTSTRAP_LESS = ./stylesheets/less/bootstrap.less
-BOOTSTRAP_RESPONSIVE = ./stylesheets/css/bootstrap-responsive.css
-BOOTSTRAP_RESPONSIVE_LESS = ./stylesheets/less/responsive.less
+DIRNAME = content
+BOOTSTRAP = ./${DIRNAME}/css/bootstrap.css
+BOOTSTRAP_LESS = ./${DIRNAME}/less/bootstrap.less
+BOOTSTRAP_RESPONSIVE = ./${DIRNAME}/css/bootstrap-responsive.css
+BOOTSTRAP_RESPONSIVE_LESS = ./${DIRNAME}/less/responsive.less
+BS_NFJS = ${DIRNAME}/nonfinal-js/bootstrap
 LESS_COMPRESSOR ?= `which lessc`
 
 bootstrap:
-	lessc ${BOOTSTRAP_LESS} > stylesheets/css/bootstrap.css
-	lessc --compress ${BOOTSTRAP_LESS} > stylesheets/css/bootstrap.min.css
-	lessc ${BOOTSTRAP_RESPONSIVE_LESS} > stylesheets/css/bootstrap-responsive.css
-	lessc --compress ${BOOTSTRAP_RESPONSIVE_LESS} > stylesheets/css/bootstrap-responsive.min.css
-	cat stylesheets/nonfinal-js/bootstrap-transition.js stylesheets/nonfinal-js/bootstrap-alert.js stylesheets/nonfinal-js/bootstrap-button.js stylesheets/nonfinal-js/bootstrap-carousel.js stylesheets/nonfinal-js/bootstrap-collapse.js stylesheets/nonfinal-js/bootstrap-dropdown.js stylesheets/nonfinal-js/bootstrap-modal.js stylesheets/nonfinal-js/bootstrap-tooltip.js stylesheets/nonfinal-js/bootstrap-popover.js stylesheets/nonfinal-js/bootstrap-scrollspy.js stylesheets/nonfinal-js/bootstrap-tab.js stylesheets/nonfinal-js/bootstrap-typeahead.js > stylesheets/js/bootstrap.js	
-	uglifyjs -nc stylesheets/js/bootstrap.js > stylesheets/js/bootstrap.min.js
-
+	lessc ${BOOTSTRAP_LESS} > ${DIRNAME}/css/bootstrap.css
+	lessc --compress ${BOOTSTRAP_LESS} > ${DIRNAME}/css/bootstrap.min.css
+	lessc ${BOOTSTRAP_RESPONSIVE_LESS} > ${DIRNAME}/css/bootstrap-responsive.css
+	lessc --compress ${BOOTSTRAP_RESPONSIVE_LESS} > ${DIRNAME}/css/bootstrap-responsive.min.css
+	cat ${BS_NFJS}-transition.js ${BS_NFJS}-alert.js ${BS_NFJS}-button.js ${BS_NFJS}-carousel.js ${BS_NFJS}-collapse.js ${BS_NFJS}-dropdown.js ${BS_NFJS}-modal.js ${BS_NFJS}-tooltip.js ${BS_NFJS}-popover.js ${BS_NFJS}-scrollspy.js ${BS_NFJS}-tab.js ${BS_NFJS}-typeahead.js > ${DIRNAME}/js/bootstrap.js
+	uglifyjs -nc ${DIRNAME}/js/bootstrap.js > ${DIRNAME}/js/bootstrap.min.js

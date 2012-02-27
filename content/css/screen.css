@@ -1,3 +1,7 @@
+/* Classes and IDs starting with "bkms-" are unrelated
+ * to Bootstrap and unique to BookmarkScout.
+ */
+
 
 /* General elements */
 /*------------------*/
@@ -20,7 +24,7 @@ ul,ol {
 /* Often used classes/IDs */
 /*------------------------*/
 
-.main-area {
+.bkms-main-area {
 	padding-top: 80px;
 }
 
@@ -37,6 +41,6 @@ ul,ol {
 /* Special classes/IDs */
 /*---------------------*/
 
-.add-link {
+.bkms-add-link {
 	margin-bottom: 24px;
 }

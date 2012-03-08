@@ -41,6 +41,23 @@ ul,ol {
 /* Special classes/IDs */
 /*---------------------*/
 
-.bkms-add-link {
-	margin-bottom: 24px;
+.bkms-link {
+	font-size: 120%;
+	margin-bottom: 0;
+	margin-right: 10px;
+	min-width: 60%;
+	padding: 10px 12px;
+	vertical-align: middle;
+}
+
+.bkms-btn-more {
+	margin-right: 10px;
+}
+
+.bkms-link-more {
+	background-color: #ffffff;
+	border-radius: 4px;
+	display: none;
+	margin-top: 15px;
+	padding: 10px 20px;
 }

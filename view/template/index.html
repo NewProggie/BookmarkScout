@@ -2,58 +2,100 @@
 {{ include.nav }}
 
 <div class="container bkms-main-area">
-  <h2>Hallo, {{ user }}!</h2>
-  <a data-toggle="modal" href="#addLinkModal" class="btn btn-large btn-primary bkms-add-link">Neuen Link hinzufügen</a>
 
-  <ul class="nav nav-tabs">
-    <li class="active">
-      <a href="#savedlinks" data-toggle="tab">Gespeicherte Links</a>
-    </li>
-    <li>
-      <a href="#profile" data-toggle="tab">Profil</a>
-    </li>
-  </ul>
+	<!--
+	<h2>Hallo, {{ user }}!</h2>
 
-  <div class="tab-content">
-    <div class="tab-pane fade active in" id="savedlinks">
-	{% for link in last_100_links %}
-	<div class="well">
-	  <a href="{{ link.url }}">{{ link.url }}</a>
-	  {% if link.is_privat %}
-	  <span class="label label-important">privat</span>
-	  {% endif %}
-	  <br />
-	  {{ link.notes }}
-	  <br />
-	  {% for tag in link.tags %}
-	  <span class="label">{{ tag }}</span>
-	  {% endfor %}
+	<a data-toggle="modal" href="#addLinkModal" class="btn btn-large btn-primary bkms-add-link">Neuen Link hinzufügen</a>
+
+	<div id="addLinkModal" class="modal hide fade in">
+		<div class="modal-header">
+			<a class="close" data-dismiss="modal">x</a>
+			<h3>Neuen Link speichern</h3>
+		</div>
+		<div class="modal-body">
+			<form class="well" action="/new_link" method="post">
+				<input type="text" name="url" class="span3" placeholder="http://www.example.com">
+				<label>Notizen</label>
+				<textarea class="input-xlarge" name="notes" rows="3"></textarea>
+				<label class="checkbox">
+					<input type="checkbox" name="is_privat">privat
+				</label>
+				<button type="submit" class="btn btn-primary">Speichern</button>
+				<a href="#" class="btn" data-dismiss="modal">Abbrechen</a>
+			</form>
+		</div>
 	</div>
-	{% endfor %}
-    </div>
-    <div class="tab-pane fade" id="profile">
-      <p>TODO: Benutzerprofil</p>
-    </div>
-  </div>
+	-->
 
-  <div id="addLinkModal" class="modal hide fade in">
-    <div class="modal-header">
-      <a class="close" data-dismiss="modal">x</a>
-      <h3>Neuen Link speichern</h3>
-    </div>
-    <div class="modal-body">
-      <form class="well" action="/new_link" method="post">
-	<input type="text" name="url" class="span3" placeholder="http://www.example.com">
-	  <label>Notizen</label>
-	  <textarea class="input-xlarge" name="notes" rows="3"></textarea>
-	  <label class="checkbox">
-	    <input type="checkbox" name="is_privat">privat
-	  </label>
-	  <button type="submit" class="btn btn-primary">Speichern</button>
-	  <a href="#" class="btn" data-dismiss="modal">Abbrechen</a>
-      </form>
-    </div>
-  </div>
+	<form class="well bkms-form-addlink" action="/new_link" method="post">
+		<span class="btn bkms-btn-more">
+			<i class="icon-cog"></i>
+			Mehr
+		</span>
+		<input type="text" name="url" class="span3 bkms-link" placeholder="http://www.example.com">
+		<button type="submit" class="btn btn-info">Speichern</button>
+
+		<div class="form-horizontal bkms-link-more">
+			<fieldset>
+				<legend>Zusätzliche Angaben und Optionen</legend>
+				<div class="control-group">
+					<label class="control-label">Notizen</label>
+					<div class="controls">
+						<textarea class="input-xlarge" name="notes" rows="3"></textarea>
+					</div>
+				</div>
+
+				<div class="control-group">
+					<label class="control-label">Tags</label>
+					<div class="controls">
+						<!-- TODO: input for tags -->
+						<input type="text" name="tags" class="input-xlarge">
+					</div>
+				</div>
+
+				<div class="control-group">
+					<label class="control-label" for="sichtbarkeit">Sichtbarkeit</label>
+					<div class="controls">
+						<label class="checkbox">
+							<input type="checkbox" name="is_privat" id="sichtbarkeit">privat
+						</label>
+					</div>
+				</div>
+			</fieldset>
+		</div>
+	</form>
+
+	<ul class="nav nav-tabs">
+		<li class="active">
+			<a href="#savedlinks" data-toggle="tab">Gespeicherte Links</a>
+		</li>
+		<li>
+			<a href="#profile" data-toggle="tab">Profil</a>
+		</li>
+	</ul>
+
+	<div class="tab-content">
+		<div class="tab-pane fade active in" id="savedlinks">
+		{% for link in last_100_links %}
+			<div class="well">
+				<a href="{{ link.url }}">{{ link.url }}</a>
+				{% if link.is_privat %}
+				<span class="label label-important">privat</span>
+				{% endif %}
+				<br />
+				{{ link.notes }}
+				<br />
+				{% for tag in link.tags %}
+				<span class="label">{{ tag }}</span>
+				{% endfor %}
+			</div>
+		{% endfor %}
+		</div>
+		<div class="tab-pane fade" id="profile">
+			<p>TODO: Benutzerprofil</p>
+		</div>
+	</div>
 
 </div>
 
